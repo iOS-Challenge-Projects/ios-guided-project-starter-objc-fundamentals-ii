@@ -8,6 +8,8 @@
 
 #import "LSITipViewController.h"
 
+// Class Extension
+
 @interface LSITipViewController ()
 
 // Private Properties
@@ -15,6 +17,10 @@
 // Private IBOutlets
 
 // Private Methods
+
+- (void)calculateTip;
+- (void)updateViews;
+- (void)saveTipNamed:(NSString *)name;
 
 @end
 

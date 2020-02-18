@@ -10,7 +10,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// Public constants
+
+// Command + Control + Up Arrow
+
+// Swift
+//class TipViewController: UIViewController {
+//
+//}
+
 @interface LSITipViewController : UIViewController
+
+// Public Methods or properties
 
 @end
 
