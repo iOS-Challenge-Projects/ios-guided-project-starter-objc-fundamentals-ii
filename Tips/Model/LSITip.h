@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // Property Attributes: * = default
 // readonly, *readwrite
-// *atomic vs. nonatomic
+// *atomic vs. nonatomic (use nonatomic for all properties)
 // copy = Always use with NSString
 // strong*, weak
 // retain (MRC)
