@@ -10,14 +10,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// ARC = Automatic Reference Counting (Swift + Objc)
+// MRC = Manual Reference Counting
+
 @interface LSITip : NSObject
 
 // public properties
 
-@property NSString *name;
-@property double total;
-@property int splitCount;
-@property double tipPercentage;
+// Property Attributes: * = default
+// readonly, *readwrite
+// *atomic vs. nonatomic
+// copy = Always use with NSString
+// strong*, weak
+// retain (MRC)
+
+@property (nonatomic, readonly, copy) NSString *name;
+@property (nonatomic, readonly) double total;
+@property (nonatomic, readonly) int splitCount;
+@property (nonatomic, readonly) double tipPercentage;
 
 // Swift
 //init(name: String, total: Double)
