@@ -44,15 +44,36 @@
     
 }
 
+// When should I call calculateTip?
+
 - (void)calculateTip {
+    // Get data from the UI
+    self.percentage = round(self.percentageSlider.value);
+    self.total = [self.totalTextField.text doubleValue]; // NSNumberFormatter ($)
+    self.split = self.splitStepper.value;
 
-    
+    // calculate a tip with splits
 
+    double tipAmount = self.total * (self.percentage / 100.0);  // $4
+    self.tip = tipAmount / self.split;  // 2 people, $2
+    NSLog(@"tip: %0.2f", self.tip);
 
+    [self updateViews];
 }
 
 - (void)updateViews {
-    // TODO: Use the model data to update the views
+    // Use the model data to update the views
+    self.percentageSlider.value = self.percentage;
+    
+    
+    self.splitLabel.text = [NSString stringWithFormat:@"%d", self.split];
+    // %0.0f = no decimals for a floating point number (round)
+    
+    // QUESTION: how would I fix the text "popping" as I move the slider: MONOSpaced font
+    self.percentageLabel.text = [NSString stringWithFormat:@"%0.0f%%", self.percentage]; // %% = %
+    
+    // FIXME: Update to use NSNumberFormatter with currencyType
+    self.tipLabel.text = [NSString stringWithFormat:@"$%0.2f", self.tip];
 }
 
 - (void)saveTipNamed:(NSString *)name {
@@ -64,10 +85,14 @@
 // MARK: - IBActions
 - (IBAction)updateSplit:(UIStepper *)sender {
     NSLog(@"split: %f", self.splitStepper.value);
+    
+    [self calculateTip];
 }
 
 - (IBAction)updatePercentage:(UISlider *)sender {
     NSLog(@"slider: %f", self.percentageSlider.value);
+    
+    [self calculateTip];
 }
 
 - (IBAction)saveTip:(UIButton *)sender {
