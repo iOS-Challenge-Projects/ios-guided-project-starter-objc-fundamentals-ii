@@ -8,10 +8,11 @@
 
 #import "LSITipViewController.h"
 #import "LSITipController.h"
+#import "LSITip.h"
 
 // Class Extension
 
-@interface LSITipViewController ()
+@interface LSITipViewController () <UITableViewDelegate, UITableViewDataSource>
 
 // Private Properties
 @property (nonatomic) double total;
@@ -42,6 +43,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tipController = [[LSITipController alloc] init]; // FIXME: move to initWithNibName / coder
+    
+    // Finished pressing return key
+    [self.totalTextField addTarget:self action:@selector(calculateTip) forControlEvents:UIControlEventEditingDidEndOnExit];
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 
 // When should I call calculateTip?
@@ -80,6 +88,13 @@
     
     // TODO: Save the tip to the controller and update tableview
 
+    [self.tipController createTipWithName:name
+                                    total:self.total
+                               splitCount:self.split
+                            tipPercentage:self.percentage];
+    
+    // How to get UI to update table?
+    [self.tableView reloadData]; // FIXME: add just the rows that changed
 }
 
 // MARK: - IBActions
@@ -97,22 +112,33 @@
 
 - (IBAction)saveTip:(UIButton *)sender {
     NSLog(@"save tip!");
+    
+    [self showSaveTipAlert];
 }
 
 // MARK: - UITableViewDataSource
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.tipController.tips.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TipCell" forIndexPath:indexPath];
+    
+    LSITip *tip = [self.tipController.tips objectAtIndex:indexPath.row];
+    cell.textLabel.text = tip.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"$%0.2f", tip.total];
+    
+    return cell;
+}
 
 // MARK: - UITableViewDelegate
 
 //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+//
 // TODO: Load the selected tip from the controller
-
+//
 //}
 
 // MARK: - Alert Helper
