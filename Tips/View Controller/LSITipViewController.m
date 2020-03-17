@@ -57,6 +57,8 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    [self calculateTip];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -65,6 +67,7 @@
 
 - (void)calculateTip {
     // TODO: Calculate the tip using the values from the UI
+    NSLog(@"Calculate Tip");
 }
 
 - (void)updateViews {
@@ -78,6 +81,16 @@
 }
 
 // MARK: - IBActions
+
+- (IBAction)updateSplit:(id)sender {
+    self.splitCount = round(self.splitStepper.value);
+    [self calculateTip];
+}
+
+- (IBAction)updatePercentage:(id)sender {
+    self.tipPercentage = round(self.percentageSlider.value);
+    [self calculateTip];
+}
 
 
 // TODO: Connect actions for splitChanged, sliderChanged, and Save Tip button
