@@ -10,14 +10,30 @@
 #import "LSITip.h"
 #import "LSITipController.h"    // always import .h, never import .m
 
-@interface LSITipViewController ()
+// Class Extension (private properties / variables)
+@interface LSITipViewController () <UITableViewDelegate, UITableViewDataSource>
 
 // Private Properties
 @property (nonatomic) LSITipController *tipController;
+@property (nonatomic) double subTotal;
+@property (nonatomic) int splitCount;
+@property (nonatomic) double tipPercentage;
+@property (nonatomic) double tip;
+@property (nonatomic) NSNumberFormatter *formatter;
 
 // Private IBOutlets
+@property (strong, nonatomic) IBOutlet UITextField *totalTextField;
+@property (strong, nonatomic) IBOutlet UILabel *splitLabel;
+@property (strong, nonatomic) IBOutlet UILabel *tipLabel;
+@property (strong, nonatomic) IBOutlet UILabel *percentageLabel;
+@property (strong, nonatomic) IBOutlet UIStepper *splitStepper;
+@property (strong, nonatomic) IBOutlet UISlider *percentageSlider;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 // Private Methods
+- (void)calculateTip;
+- (void)updateViews;
+- (void)saveTipNamed:(NSString *)name;
 
 @end
 
@@ -37,6 +53,10 @@
     
     [self.tipController addTip:tip];
     NSLog(@"self.tipController.count: %ld", self.tipController.tips.count);
+    
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -65,19 +85,38 @@
 
 // MARK: - UITableViewDataSource
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.tipController.tips.count;
+}
+
+// Lazy Objc property
+- (NSNumberFormatter *)formatter {
+    if (!_formatter) {
+        _formatter = [[NSNumberFormatter alloc] init];
+        _formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    }
+    return _formatter;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TipCell" forIndexPath:indexPath];
+    
+    LSITip *tip = self.tipController.tips[indexPath.row];
+    cell.textLabel.text = tip.name;
+    cell.detailTextLabel.text = [self.formatter stringFromNumber:@(tip.subTotal)]; // number literal (wrapping into NSNumber)
+    
+    
+    return cell;
+}
 
 // MARK: - UITableViewDelegate
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 // TODO: Load the selected tip from the controller
 
-//}
+}
 
 // MARK: - Alert Helper
 
