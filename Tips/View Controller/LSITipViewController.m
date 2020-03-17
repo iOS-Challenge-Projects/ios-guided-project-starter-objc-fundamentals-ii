@@ -7,10 +7,13 @@
 //
 
 #import "LSITipViewController.h"
+#import "LSITip.h"
+#import "LSITipController.h"    // always import .h, never import .m
 
 @interface LSITipViewController ()
 
 // Private Properties
+@property (nonatomic) LSITipController *tipController;
 
 // Private IBOutlets
 
@@ -23,10 +26,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    _tipController = [[LSITipController alloc] init];
+    
+    // Test Data (take it out later)
+    LSITip *tip = [[LSITip alloc] initWithName:@"Coffee and Tea"
+                                      subTotal:14.59
+                                 tipPercentage:20.0
+                                    splitCount:1];
+    
+    [self.tipController addTip:tip];
+    NSLog(@"self.tipController.count: %ld", self.tipController.tips.count);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self showSaveTipAlert];
+//    [self showSaveTipAlert];
 }
 
 - (void)calculateTip {
