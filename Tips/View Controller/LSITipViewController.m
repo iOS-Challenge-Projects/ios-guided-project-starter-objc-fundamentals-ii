@@ -7,6 +7,7 @@
 //
 
 #import "LSITipViewController.h"
+#import "LSITip.h"
 
 @interface LSITipViewController ()
 
@@ -23,10 +24,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    LSITip *tip = [[LSITip alloc] initWithTotal:84.45 splitCount:2 tipPercentage:20 name:@"Brick oven pizza"];
+    
+    // printing out the property name
+    NSLog(@"Tip: %@", tip.name);
+    
+//    tip.name = @"Tacos";
+//    NSLog(@"Tip: %@", tip.name);
+    
+    NSLog(@"Tip Percentage: %0.2f", tip.tipPercentage);
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self showSaveTipAlert];
+//    [self showSaveTipAlert];
 }
 
 - (void)calculateTip {
