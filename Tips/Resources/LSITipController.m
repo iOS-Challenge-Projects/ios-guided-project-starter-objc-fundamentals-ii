@@ -29,6 +29,10 @@
     self = [super init];
     if (self) {
         _internalTips = [[NSMutableArray alloc] init];
+        
+        // TEST DATA (Remove later)
+        LSITip *tip = [[LSITip alloc] initWithTotal:84.45 splitCount:2 tipPercentage:20 name:@"Brick oven pizza"];
+        [self addTip:tip];
     }
     return self;
 }
