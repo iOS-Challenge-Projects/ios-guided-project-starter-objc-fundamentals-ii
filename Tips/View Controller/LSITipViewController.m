@@ -9,6 +9,7 @@
 #import "LSITipViewController.h"
 #import "LSITipController.h"
 #import "LSITip.h"
+#import "LSITipCell.h"
 
 // Class Extension
 
@@ -50,6 +51,8 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    [self calculateTip];
 }
 
 // When should I call calculateTip?
@@ -124,11 +127,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TipCell" forIndexPath:indexPath];
+    LSITipCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TipCell" forIndexPath:indexPath];
     
     LSITip *tip = [self.tipController.tips objectAtIndex:indexPath.row];
-    cell.textLabel.text = tip.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"$%0.2f", tip.total];
+    cell.tip = tip;
     
     return cell;
 }
