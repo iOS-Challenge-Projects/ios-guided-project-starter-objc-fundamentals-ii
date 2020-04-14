@@ -17,7 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LSITipController : NSObject
 
-@property NSArray<LSITip *> *tips;
+// Public Properties
+
+@property (nonatomic, readonly) NSArray<LSITip *> *tips;
+
+// Public Methods
+
+- (void)addTip:(LSITip *)tip;
 
 @end
 
