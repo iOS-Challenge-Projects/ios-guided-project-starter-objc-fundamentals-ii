@@ -9,12 +9,26 @@
 #import "LSITipViewController.h"
 //Import the h file to gain access to props and methods
 #import "FGTTip.h"
-
-@interface LSITipViewController ()
+#import "FGTTipController.h"
+//Conform to delegate protocols in the .m file UITableViewDelegate
+@interface LSITipViewController () <UITableViewDelegate, UITableViewDataSource>
 
 // Private Properties
 
+@property (nonatomic) double total;
+@property (nonatomic) int split;
+@property (nonatomic) double percentage;
+@property (nonatomic) double tip;
+
+
 // Private IBOutlets
+@property (weak, nonatomic) IBOutlet UITextField *totalTextField;
+@property (strong, nonatomic) IBOutlet UILabel *splitLabel;
+@property (strong, nonatomic) IBOutlet UILabel *tipLabel;
+@property (strong, nonatomic) IBOutlet UILabel *percentageLabel;
+@property (strong, nonatomic) IBOutlet UIStepper *splitStepper;
+@property (strong, nonatomic) IBOutlet UISlider *precentageSlider;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 // Private Methods
 
@@ -25,7 +39,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
     FGTTip *tip = [[FGTTip alloc] initWithTotal:84.45 splitCount:2 tipPercentage:20 name:@"Brick oven pizza"];
+    
     
     NSLog(@"Tip: %@",tip.name);
     
@@ -36,7 +54,19 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self showSaveTipAlert];
+    [super viewDidAppear:animated];
+
+}
+
+// Lazy Property
+- (FGTTipController *)tipController {
+    //Swift: if(_tipController != nil)
+    if (!_tipController) {
+        //Initialize
+        _tipController = [[FGTTipController alloc] init];
+    }
+    //Else return it
+    return _tipController;
 }
 
 - (void)calculateTip {
@@ -54,6 +84,14 @@
 }
 
 // MARK: - IBActions
+- (IBAction)SplitValueChanged:(id)sender {
+}
+- (IBAction)sliderChanged:(id)sender {
+}
+- (IBAction)savedButtonPressed:(id)sender {
+}
+
+
 
 
 // TODO: Connect actions for splitChanged, sliderChanged, and Save Tip button
@@ -61,11 +99,22 @@
 
 // MARK: - UITableViewDataSource
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return self.tipController.tips.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tipCell" forIndexPath:indexPath];
+    
+    FGTTip *tip = self.tipController.tips[indexPath.row];
+    
+    cell.textLabel.text = tip.name;
+    
+    return cell;
+    
+}
 
 // MARK: - UITableViewDelegate
 

@@ -69,6 +69,9 @@
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Aqe-rd-BYX">
                                                 <rect key="frame" x="280" y="0.0" width="94" height="32"/>
+                                                <connections>
+                                                    <action selector="SplitValueChanged:" destination="oP8-A4-c0t" eventType="valueChanged" id="Tdf-8z-wfZ"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -94,12 +97,18 @@
                                             </stackView>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="kNt-id-Gqe">
                                                 <rect key="frame" x="-2" y="32" width="378" height="31"/>
+                                                <connections>
+                                                    <action selector="sliderChanged:" destination="oP8-A4-c0t" eventType="valueChanged" id="sbH-fP-wN4"/>
+                                                </connections>
                                             </slider>
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oDA-Ul-XQd">
                                         <rect key="frame" x="0.0" y="267" width="374" height="30"/>
                                         <state key="normal" title="Save Tip"/>
+                                        <connections>
+                                            <action selector="savedButtonPressed:" destination="oP8-A4-c0t" eventType="touchUpInside" id="TIy-lk-6fk"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -139,6 +148,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RQC-Sa-V0t"/>
                     </view>
+                    <connections>
+                        <outlet property="percentageLabel" destination="DMG-Uo-Xic" id="hvl-B8-bG8"/>
+                        <outlet property="precentageSlider" destination="kNt-id-Gqe" id="Ryp-Kq-fMb"/>
+                        <outlet property="splitLabel" destination="6bP-jL-21Q" id="OfV-DQ-u2A"/>
+                        <outlet property="splitStepper" destination="Aqe-rd-BYX" id="t1G-xZ-aBg"/>
+                        <outlet property="tableView" destination="GwR-Pd-0HM" id="Cgg-h5-KKm"/>
+                        <outlet property="tipLabel" destination="SwS-gX-2WU" id="A7Y-L1-Rg0"/>
+                        <outlet property="totalTextField" destination="Dtn-8P-b8p" id="dbS-jH-GiD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W8p-fq-xn2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

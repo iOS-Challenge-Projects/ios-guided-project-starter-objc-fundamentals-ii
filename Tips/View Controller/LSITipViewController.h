@@ -8,9 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+//Forward class declaration
+@class FGTTipController;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LSITipViewController : UIViewController
+
+//Public Properties
+
+//Dependecy injection allow us to pass in the 
+@property (nonatomic) FGTTipController *tipController;
+
+//Public Methods
+
+
 
 @end
 

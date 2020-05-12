@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 //Public propertties
-@property (nonatomic, readonly) NSArray<FGTTip *> *tip;
+@property (nonatomic, readonly) NSArray<FGTTip *> *tips;
 
 
 //Public methods

@@ -28,12 +28,16 @@
     self = [super init];
     if(self){
         _internalTips = [[NSMutableArray alloc] init];
+        
+        //Test data
+        FGTTip *tip = [[FGTTip alloc] initWithTotal:84.45 splitCount:2 tipPercentage:20 name:@"Brick oven pizza"];
+        //[self addTip:tip];
     }
     return self;
 };
 
 //Computed property for the tips property
-- (NSArray<FGTTip *> *)tip {
+- (NSArray<FGTTip *> *)tips {
     //Always use the "_" instance version name in the getter/setter methods
     //By using [_xx copy] we create a unmutable copy
     return [_internalTips copy];
