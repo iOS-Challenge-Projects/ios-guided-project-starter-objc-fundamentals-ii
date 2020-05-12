@@ -71,10 +71,27 @@
 
 - (void)calculateTip {
     // TODO: Calculate the tip using the values from the UI
+    self.percentage = round(self.precentageSlider.value);
+    self.total = [self.totalTextField.text doubleValue];
+    self.split = self.splitStepper.value;
+    
+    self.tip = self.total * (self.percentage / 100.0) / self.split;
+    
+    //NSLog(@"Tip: %f", self.tip);
+    
+    [self updateViews];
 }
 
 - (void)updateViews {
     // TODO: Use the model data to update the views
+    self.splitStepper.value = self.split;
+    self.precentageSlider.value = self.percentage;
+    self.totalTextField.text = [NSString stringWithFormat:@"%.2f", self.total];
+    
+    self.tipLabel.text = [NSString stringWithFormat:@"$%.2F", self.tip];
+    self.splitLabel.text = [NSString stringWithFormat:@"%d", self.split];
+    //%% = % for output
+    self.percentageLabel.text = [NSString stringWithFormat:@"%0.0f%%", self.percentage];
 }
 
 - (void)saveTipNamed:(NSString *)name {
@@ -85,10 +102,20 @@
 
 // MARK: - IBActions
 - (IBAction)SplitValueChanged:(id)sender {
+    //set value
+    self.split = round(self.splitStepper.value);
+    //invoke method
+    [self calculateTip];
 }
+
 - (IBAction)sliderChanged:(id)sender {
+    self.percentage = round(self.precentageSlider.value);
+    [self calculateTip];
 }
+
 - (IBAction)savedButtonPressed:(id)sender {
+    //invoke method
+    [self showSaveTipAlert];
 }
 
 
