@@ -21,7 +21,7 @@
 @property (nonatomic) double tip;
 
 // Private IBOutlets
-@property (weak, nonatomic) IBOutlet UITextField *totalTextField;
+@property (strong, nonatomic) IBOutlet UITextField *totalTextField;
 @property (strong, nonatomic) IBOutlet UILabel *splitLabel;
 @property (strong, nonatomic) IBOutlet UILabel *tipLabel;
 @property (strong, nonatomic) IBOutlet UILabel *percentageLabel;
@@ -40,16 +40,6 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    //FGTTip *tip = [[FGTTip alloc] initWithTotal:84.45 splitCount:2 tipPercentage:20 name:@"Brick oven pizza"];
-    
-    
-    //NSLog(@"Tip: %@",tip.name);
-    
-    //Renamed property not posible because is readonly
-    //tip.name = @"Tacos";
-    
-    //NSLog(@"Tip: %0.2f", tip.tipPercentage);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -86,7 +76,7 @@
     self.splitStepper.value = self.split;
     self.precentageSlider.value = self.percentage;
     self.totalTextField.text = [NSString stringWithFormat:@"%.2f", self.total];
-    
+    //NSLog(@"Total: %f", self.total);
     self.tipLabel.text = [NSString stringWithFormat:@"$%.2F", self.tip];
     self.splitLabel.text = [NSString stringWithFormat:@"%d", self.split];
     //%% = % for output
@@ -123,11 +113,7 @@
     [self showSaveTipAlert];
 }
 
-
-
-
 // TODO: Connect actions for splitChanged, sliderChanged, and Save Tip button
-
 
 // MARK: - UITableViewDataSource
 
@@ -150,11 +136,16 @@
 
 // MARK: - UITableViewDelegate
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 // TODO: Load the selected tip from the controller
-
-//}
+    FGTTip *selectedTip = self.tipController.tips[indexPath.row];
+    
+    self.totalTextField.text = [NSString stringWithFormat:@"%.2f", selectedTip.total];
+    self.splitStepper.value = selectedTip.splitCount;
+    self.precentageSlider.value = selectedTip.tipPercentage;
+    
+    [self calculateTip];
+}
 
 // MARK: - Alert Helper
 
