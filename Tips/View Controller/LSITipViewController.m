@@ -12,9 +12,9 @@
 #import "FGTTipController.h"
 //Conform to delegate protocols in the .m file UITableViewDelegate
 @interface LSITipViewController () <UITableViewDelegate, UITableViewDataSource>
+ 
 
-// Private Properties
-
+// Private Properties//
 @property (nonatomic) double total;
 @property (nonatomic) int split;
 @property (nonatomic) double percentage;
@@ -138,8 +138,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 // TODO: Load the selected tip from the controller
+    //1.Save the selected cell to a variable
     FGTTip *selectedTip = self.tipController.tips[indexPath.row];
     
+    //Pass the data to be calculated
     self.totalTextField.text = [NSString stringWithFormat:@"%.2f", selectedTip.total];
     self.splitStepper.value = selectedTip.splitCount;
     self.precentageSlider.value = selectedTip.tipPercentage;
