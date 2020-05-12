@@ -15,7 +15,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FGTTipController : NSObject
 
-@property NSArray<FGTTip *> *tip;
+
+//Public propertties
+@property (nonatomic, readonly) NSArray<FGTTip *> *tip;
+
+
+//Public methods
+- (void)addTip:(NSSet *)objects;
+
+
 
 @end
 
