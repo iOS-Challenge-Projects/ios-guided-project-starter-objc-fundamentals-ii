@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FGTTip : NSObject
 
-@property (readonly) double total;
+@property (readonly, nonatomic) double total;
 //When we create a property
 // 1-Setter implicitly create
 //- (void)setTotal:(double)total;
@@ -22,9 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 // double _total;
 
 //When we set it as readonly then a setter wont be created
-@property (readonly) int splitCount;
-@property (readonly) double tipPercentage;
-@property (readwrite) NSString *name;
+@property (readonly, nonatomic) int splitCount;
+@property (readonly, nonatomic) double tipPercentage;
+@property (readonly, copy, nonatomic) NSString *name;
 
 
 - (instancetype)initWithTotal:(double)total

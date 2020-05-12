@@ -29,8 +29,8 @@
     
     NSLog(@"Tip: %@",tip.name);
     
-    //Renamed property
-    tip.name = @"Tacos";
+    //Renamed property not posible because is readonly
+    //tip.name = @"Tacos";
     
     NSLog(@"Tip: %0.2f", tip.tipPercentage);
 }
