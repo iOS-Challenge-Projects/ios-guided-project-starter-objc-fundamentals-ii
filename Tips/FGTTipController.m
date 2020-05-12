@@ -30,7 +30,7 @@
         _internalTips = [[NSMutableArray alloc] init];
         
         //Test data
-        FGTTip *tip = [[FGTTip alloc] initWithTotal:84.45 splitCount:2 tipPercentage:20 name:@"Brick oven pizza"];
+//        FGTTip *tip = [[FGTTip alloc] initWithTotal:84.45 splitCount:2 tipPercentage:20 name:@"Brick oven pizza"];
         //[self addTip:tip];
     }
     return self;
@@ -45,7 +45,7 @@
 
 - (void)addTip:(FGTTip *)tip {
     //Use dot syntax anytime you are not in a init/dealloc/setter/getter
-    [self.internalTips addObject:tip];
+    [self.internalTips addObject: tip];
     
     //Same as above
     //[[self internalTips] addObject:tip];

@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 //Public methods
-- (void)addTip:(NSSet *)objects;
+- (void)addTip:(FGTTip *)tip;
 
 
 

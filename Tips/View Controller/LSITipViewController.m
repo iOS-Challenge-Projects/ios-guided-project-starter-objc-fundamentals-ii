@@ -20,7 +20,6 @@
 @property (nonatomic) double percentage;
 @property (nonatomic) double tip;
 
-
 // Private IBOutlets
 @property (weak, nonatomic) IBOutlet UITextField *totalTextField;
 @property (strong, nonatomic) IBOutlet UILabel *splitLabel;
@@ -42,15 +41,15 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    FGTTip *tip = [[FGTTip alloc] initWithTotal:84.45 splitCount:2 tipPercentage:20 name:@"Brick oven pizza"];
+    //FGTTip *tip = [[FGTTip alloc] initWithTotal:84.45 splitCount:2 tipPercentage:20 name:@"Brick oven pizza"];
     
     
-    NSLog(@"Tip: %@",tip.name);
+    //NSLog(@"Tip: %@",tip.name);
     
     //Renamed property not posible because is readonly
     //tip.name = @"Tacos";
     
-    NSLog(@"Tip: %0.2f", tip.tipPercentage);
+    //NSLog(@"Tip: %0.2f", tip.tipPercentage);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -97,7 +96,13 @@
 - (void)saveTipNamed:(NSString *)name {
     
     // TODO: Save the tip to the controller and update tableview
-
+    //1.Create new object to add it to array
+    FGTTip *tip = [[FGTTip alloc] initWithTotal:self.total splitCount:self.split tipPercentage:self.percentage name: name];
+    
+    //2.Add tip to array
+    [self.tipController addTip:tip];
+    
+    [self.tableView reloadData];
 }
 
 // MARK: - IBActions
