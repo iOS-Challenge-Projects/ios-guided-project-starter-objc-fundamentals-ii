@@ -7,6 +7,8 @@
 //
 
 #import "LSITipViewController.h"
+//Import the h file to gain access to props and methods
+#import "FGTTip.h"
 
 @interface LSITipViewController ()
 
@@ -23,6 +25,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    FGTTip *tip = [[FGTTip alloc] initWithTotal:84.45 splitCount:2 tipPercentage:20 name:@"Brick oven pizza"];
+    
+    NSLog(@"Tip: %@",tip.name);
+    
+    //Renamed property
+    tip.name = @"Tacos";
+    
+    NSLog(@"Tip: %0.2f", tip.tipPercentage);
 }
 
 - (void)viewDidAppear:(BOOL)animated {

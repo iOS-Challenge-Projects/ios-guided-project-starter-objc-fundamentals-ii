@@ -10,13 +10,15 @@
 
 @implementation FGTTip
 
+//If you overwrite a getter/setter you need to tell compiler to still create your instance
+@synthesize name = _name;
+
 - (instancetype)initWithTotal:(double)total
                    splitCount:(int)splitCount
                 tipPercentage:(double)tipPercentage
                          name:(NSString *)name {
     
     self = [super init];
-    
     if(self) {
          
         _total = total;
@@ -25,7 +27,12 @@
         _name = name;
     }
     return self;
-    
-};
+}
+
+
+- (NSString *)name {
+    NSLog(@"Accessing name");
+    return _name;
+}
 
 @end
