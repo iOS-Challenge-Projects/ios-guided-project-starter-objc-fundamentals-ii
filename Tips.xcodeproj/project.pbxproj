@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		046BABF1246A958600A784C5 /* FGTTip.m in Sources */ = {isa = PBXBuildFile; fileRef = 046BABF0246A958600A784C5 /* FGTTip.m */; };
 		461E8A9A23EC7AF900C1F2B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 461E8A9923EC7AF900C1F2B7 /* AppDelegate.m */; };
 		461E8A9D23EC7AF900C1F2B7 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 461E8A9C23EC7AF900C1F2B7 /* SceneDelegate.m */; };
 		461E8AA323EC7AF900C1F2B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 461E8AA123EC7AF900C1F2B7 /* Main.storyboard */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		046BABEF246A958600A784C5 /* FGTTip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FGTTip.h; sourceTree = "<group>"; };
+		046BABF0246A958600A784C5 /* FGTTip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FGTTip.m; sourceTree = "<group>"; };
 		461E8A9523EC7AF900C1F2B7 /* Tips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		461E8A9823EC7AF900C1F2B7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		461E8A9923EC7AF900C1F2B7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -61,6 +64,8 @@
 		461E8A9723EC7AF900C1F2B7 /* Tips */ = {
 			isa = PBXGroup;
 			children = (
+				046BABEF246A958600A784C5 /* FGTTip.h */,
+				046BABF0246A958600A784C5 /* FGTTip.m */,
 				467F766323F2253000A284A5 /* View Controller */,
 				467F766723F2256000A284A5 /* Storyboards */,
 				467F766623F2255000A284A5 /* Resources */,
@@ -172,6 +177,7 @@
 			files = (
 				461E8A9A23EC7AF900C1F2B7 /* AppDelegate.m in Sources */,
 				461E8AB923EC97E200C1F2B7 /* LSITipViewController.m in Sources */,
+				046BABF1246A958600A784C5 /* FGTTip.m in Sources */,
 				461E8AAB23EC7AFA00C1F2B7 /* main.m in Sources */,
 				461E8A9D23EC7AF900C1F2B7 /* SceneDelegate.m in Sources */,
 			);
@@ -314,7 +320,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VXUQXR6S56;
+				DEVELOPMENT_TEAM = N3P8URX7UV;
 				INFOPLIST_FILE = Tips/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -331,7 +337,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VXUQXR6S56;
+				DEVELOPMENT_TEAM = N3P8URX7UV;
 				INFOPLIST_FILE = Tips/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
